@@ -1,0 +1,799 @@
+/* assets/css/custom.css
+   Fuzzy Flower Collection — refined floral theme
+   - Updated palette, fonts, gradients and subtle decorations
+   - Preserves all original class names and layout behavior
+   - Replace existing stylesheet contents with this file
+*/
+
+/* Load elegant heading font while retaining Inter for UI text */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap");
+
+:root{
+  --primary: #7b3fe4;            /* brand purple */
+  --primary-700: #5a2fe2;
+  --primary-soft: rgba(123,63,228,0.10);
+  --accent: #ff7ab6;            /* pink accent */
+  --accent-soft: rgba(255,122,182,0.08);
+  --muted: #6c757d;
+  --muted-2: #8a8f98;
+  --glass: rgba(255,255,255,0.9);
+  --bg: #fbfbfd;
+  --surface: #ffffff;
+  --surface-2: #fbf7ff;
+  --radius: 12px;
+  --card-border: rgba(0,0,0,0.04);
+  --shadow-sm: 0 8px 28px rgba(27,24,38,0.06);
+  --shadow-md: 0 16px 60px rgba(27,24,38,0.08);
+  --floral-1: #fff1f6;
+  --floral-2: #f5f2ff;
+  --glass-border: rgba(123,63,228,0.06);
+}
+
+/* Base */
+html, body {
+  height: 100%;
+}
+body.app-body {
+  background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+  color: #222;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+  /* a very subtle floral vignette using radial gradients (decorative, non-invasive) */
+  background-image:
+    radial-gradient(600px 240px at 95% 5%, rgba(255,234,245,0.6), transparent 20%),
+    radial-gradient(420px 180px at 5% 92%, rgba(243,232,255,0.55), transparent 20%);
+  background-repeat: no-repeat;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif;
+  color: #2d2437;
+  margin-top: 0;
+}
+p, label, input, button {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+
+/* Container tweaks */
+.container {
+  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar / Header */
+.bg-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.86));
+  -webkit-backdrop-filter: blur(6px) saturate(115%);
+  backdrop-filter: blur(6px) saturate(115%);
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 18px rgba(27,24,38,0.03);
+  position: relative;
+  overflow: visible;
+  z-index: 100;
+}
+
+/* small floral accent on the header using pseudo-element (pure CSS, doesn't require markup) */
+.bg-glass::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: -26px;
+  width: 140px;
+  height: 80px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,122,182,0.12), transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(123,63,228,0.08), transparent 20%);
+  pointer-events: none;
+  filter: blur(8px);
+  transform: rotate(-8deg);
+  opacity: 0.95;
+}
+
+/* Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-brand svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(123,63,228,0.05), rgba(123,63,228,0.02));
+  padding: 6px;
+  box-shadow: 0 6px 18px rgba(123,63,228,0.06);
+}
+
+.brand-text {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary);
+  letter-spacing: 0.4px;
+  margin: 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* Nav links */
+.nav-link {
+  color: #3a3542 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: color .14s ease, transform .10s ease, background .14s ease, box-shadow .14s;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+  background: linear-gradient(90deg, rgba(123,63,228,0.03), rgba(255,122,182,0.02));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(123,63,228,0.04);
+}
+
+/* Icon styling in nav */
+.nav-icon {
+  color: var(--muted);
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Cart badge */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: linear-gradient(180deg, var(--accent), #ff5fa6);
+  color: white;
+  font-size: 11px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(123,63,228,0.12);
+  transform: translateZ(0);
+  border: 2px solid #fff;
+  z-index: 10;
+}
+
+/* Buttons */
+.btn-fuzzy {
+  background: linear-gradient(90deg, var(--primary), var(--primary-700));
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .14s cubic-bezier(.2,.9,.3,1), box-shadow .14s, opacity .12s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.btn-fuzzy:focus,
+.btn-fuzzy:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(90,47,226,0.12);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Outline variants */
+.btn-outline-primary {
+  border-radius: 10px;
+  border: 1px solid rgba(123,63,228,0.12);
+}
+
+/* Cards */
+.card {
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Decorative card header accent (small floral line) */
+.card > .card-header, .card > h5 {
+  position: relative;
+}
+.card > .card-header::after, .card > h5::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 64px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  opacity: 0.9;
+}
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: 10px;
+  padding: .6rem .75rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow .14s ease, border-color .14s ease, transform .12s;
+  background: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 10px 30px rgba(123,63,228,0.06);
+  border-color: rgba(123,63,228,0.24);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Inputs with small icons */
+.input-icon {
+  position: relative;
+}
+.input-icon .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+  opacity: 0.9;
+}
+.input-icon input {
+  padding-left: 40px;
+}
+
+/* Tables */
+.table th, .table td {
+  vertical-align: middle;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+.table thead th {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
+}
+
+/* Badges */
+.badge {
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 6px 10px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
+}
+
+/* Product card image
+   Combined into a single coherent rule to avoid duplication while preserving:
+   - top border radius
+   - object-fit cover
+   - hover scale
+   - responsive constraints
+*/
+.card .card-img-top {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  object-fit: cover;
+  transition: transform .18s ease;
+  width: 100%;
+  height: auto !important;    /* allow flexible height, override inline heights on small screens */
+  max-height: 420px;
+}
+.card .card-img-top:hover {
+  transform: scale(1.02);
+}
+
+/* Small helpers */
+.text-muted-small {
+  color: var(--muted-2);
+  font-size: .88rem;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid rgba(0,0,0,0.04);
+  background: linear-gradient(180deg, rgba(255,247,250,0.6), transparent);
+  padding-top: 18px;
+  padding-bottom: 28px;
+}
+
+/* footer floral strip (decorative) */
+.footer::before {
+  content: "";
+  display:block;
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255,122,182,0.12), rgba(123,63,228,0.08));
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+/* ══════════════════════════════════════════════════════════════════ */
+/* NOTIFICATION DROPDOWN - POSITION FIX */
+/* ══════════════════════════════════════════════════════════════════ */
+
+/* Notification dropdown container */
+.nav-item.dropdown {
+  position: relative;
+  z-index: 1050 !important;
+}
+
+/* The main dropdown menu with fixed positioning */
+.dropdown-menu[aria-labelledby="notifMenu"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  right: 20px !important;
+  top: 80px !important;  /* Position below navbar (adjusted) */
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  
+  /* Size */
+  min-width: 360px !important;
+  max-width: 400px !important;
+  max-height: calc(100vh - 120px) !important;  /* Leave space from top and bottom */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  
+  /* Styling */
+  background: rgba(255, 255, 255, 0.99) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(123,63,228,0.15) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+  padding: 0 !important;
+  
+  /* Animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+/* When dropdown is shown (Bootstrap adds .show class) */
+.dropdown-menu[aria-labelledby="notifMenu"].show {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* Notification header */
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-header {
+  position: sticky;
+  top: 0;
+  padding: 16px 18px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  color: var(--primary) !important;
+  border-bottom: 2px solid rgba(123,63,228,0.12) !important;
+  background: rgba(255, 255, 255, 0.99) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
+  z-index: 10;
+}
+
+/* Individual notification items */
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item {
+  padding: 14px 18px !important;
+  border-bottom: 1px solid rgba(123,63,228,0.06) !important;
+  color: #222 !important;
+  font-size: 0.9rem !important;
+  white-space: normal !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  cursor: pointer;
+}
+
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item:hover {
+  background: rgba(123,63,228,0.08) !important;
+  color: var(--primary) !important;
+}
+
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item:focus {
+  background: rgba(123,63,228,0.12) !important;
+  outline: none;
+}
+
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item:last-of-type {
+  border-bottom: none !important;
+}
+
+/* Dropdown divider */
+.dropdown-menu[aria-labelledby="notifMenu"] .dropdown-divider {
+  margin: 8px 0 !important;
+  height: 1px !important;
+  background: rgba(123,63,228,0.08) !important;
+  border: none !important;
+}
+
+/* Links inside notification dropdown */
+.dropdown-menu[aria-labelledby="notifMenu"] a {
+  color: var(--primary) !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dropdown-menu[aria-labelledby="notifMenu"] a:hover {
+  text-decoration: underline;
+}
+
+/* View all link at bottom */
+.dropdown-menu[aria-labelledby="notifMenu"] .text-center {
+  padding: 12px 18px !important;
+  background: rgba(123,63,228,0.03) !important;
+  border-top: 1px solid rgba(123,63,228,0.08) !important;
+  border-radius: 0 0 14px 14px !important;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Tablet responsiveness for dropdown */
+@media (max-width: 768px) {
+  .dropdown-menu[aria-labelledby="notifMenu"] {
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    top: 75px !important;
+    max-height: calc(100vh - 100px) !important;
+  }
+}
+
+/* Mobile responsiveness for dropdown */
+@media (max-width: 640px) {
+  .dropdown-menu[aria-labelledby="notifMenu"] {
+    min-width: 90vw !important;
+    max-width: 90vw !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    top: 70px !important;
+    max-height: calc(100vh - 90px) !important;
+  }
+  
+  .dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item {
+    padding: 12px 14px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown-menu[aria-labelledby="notifMenu"] {
+    min-width: 92vw !important;
+    max-width: 92vw !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    top: 65px !important;
+    max-height: calc(100vh - 80px) !important;
+  }
+  
+  .dropdown-menu[aria-labelledby="notifMenu"] .dropdown-item {
+    padding: 10px 12px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .dropdown-menu[aria-labelledby="notifMenu"] .dropdown-header {
+    padding: 12px 14px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ═════════════════════��════════════════════════════════════════════ */
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+  .container { padding-left: 16px; padding-right: 16px; }
+  .brand-text { font-size: 1.05rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-link .d-none.d-lg-inline { display: none !important; }
+  .navbar-brand svg { width: 36px; height: 36px; }
+  .brand-text { font-size: 1rem; }
+}
+
+/* Utility: subtle focus rings for accessibility */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(123,63,228,0.12);
+  outline-offset: 2px;
+}
+
+/* Alerts: softer rounded */
+.alert {
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 6px 18px rgba(27,24,38,0.03);
+}
+
+/* Small components used across admin/user pages */
+
+/* Inline edit floating card */
+#editForm, #editProfile, #editTransactionForm {
+  border-radius: 12px;
+  box-shadow: 0 18px 60px rgba(23,23,23,0.06);
+}
+
+/* Tiny details for lists of items */
+.list-unstyled .d-flex img {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* History box */
+.status-history {
+  max-width: 360px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.02);
+  border: 1px dashed rgba(123,63,228,0.04);
+}
+
+/* Receipt / print adjustments */
+@media print {
+  body { background: #fff; color: #000; }
+  .navbar, .footer, .btn, .no-print { display: none !important; }
+  .container { max-width: 100% !important; }
+}
+
+/* Small additional helpers for the floral theme */
+.text-floral {
+  color: var(--accent);
+}
+.bg-floral-soft {
+  background: linear-gradient(180deg, var(--floral-1), var(--floral-2));
+  border-radius: 10px;
+  border: 1px solid rgba(255,122,182,0.06);
+}
+
+/* small elevated pill used in dashboards/tiles */
+.pill-elevated {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(123,63,228,0.06), rgba(255,122,182,0.03));
+  color: var(--primary);
+  font-weight: 700;
+  font-size: .82rem;
+  box-shadow: 0 6px 18px rgba(123,63,228,0.04);
+}
+
+/* minor tweaks for existing interactive pieces (no markup changes) */
+.btn-sm {
+  border-radius: 9px;
+  padding: 6px 8px;
+}
+
+.form-select-sm {
+  padding: .35rem .5rem;
+  border-radius: 8px;
+}
+
+/* keep legacy classes working while improving look */
+.badge.bg-warning.text-dark {
+  background: linear-gradient(180deg, #fff7ed, #fff6f2);
+  color: #92400e;
+  border: 1px solid rgba(245,158,11,0.06);
+}
+.badge.bg-danger {
+  background: linear-gradient(180deg,#fee2e2,#fee2e2);
+  color: #7f1d1d;
+}
+
+/* small animation for subtle polish */
+@media (prefers-reduced-motion: no-preference) {
+  .card, .btn-fuzzy, .nav-link {
+    will-change: transform;
+  }
+}
+
+/* End of stylesheet */
+
+
+/* --------------------------------------------------------------------
+   RESPONSIVE / FLEXIBLE ADDITIONS
+   Non-invasive rules appended to improve device flexibility
+   -------------------------------------------------------------------- */
+
+/* Make images scale to their container and preserve aspect ratio
+   NOTE: kept object-fit: cover and height:auto to preserve visual behavior.
+*/
+img,
+.card-img-top,
+.db-order-thumb,
+.db-tx-thumb,
+.db-proof-thumb,
+.reply-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Ensure product card images do not force fixed height on small screens
+   (kept as part of .card .card-img-top above)
+*/
+
+/* Tables: allow horizontal scroll on narrow viewports */
+.table-responsive, .responsive-table, .table-wrapper {
+  overflow-x: auto;
+  /* IE / legacy Edge hint */
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  /* set a default thin scrollbar in browsers that support the property (Firefox) */
+}
+
+/* Apply Firefox-only scrollbar properties only where supported to avoid editor warnings */
+@supports (scrollbar-width: thin) {
+  .table-responsive, .responsive-table, .table-wrapper {
+    /* Firefox-only */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.18) transparent;
+  }
+}
+
+/* Apply iOS momentum scrolling only where supported via @supports (avoids linter noise) */
+@supports (-webkit-overflow-scrolling: touch) {
+  .table-responsive, .responsive-table, .table-wrapper {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* WebKit / Blink scrollbar visuals (Chrome, Edge, Safari) */
+.table-responsive::-webkit-scrollbar,
+.responsive-table::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb,
+.responsive-table::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track,
+.responsive-table::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Prevent table text from overflowing; allow cells to break */
+.table td, .table th {
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Make cards / panels full width on small screens with comfortable padding */
+@media (max-width: 900px) {
+  .container { padding-left: 14px; padding-right: 14px; }
+  .card, .db-profile-card, .db-trans-panel, .feedback-form-card, .feedback-card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Floating edit forms / panels: keep fixed position on desktop but become fluid on mobile */
+#editPanel, #editForm, #addrModal, .db-modal, #profileModal {
+  box-sizing: border-box;
+  max-width: 420px;
+  width: 360px;
+}
+
+/* Responsive adjustments for edit panels and small modals */
+@media (max-width: 700px) {
+  #editPanel, #editForm, #addrModal, .db-modal, #profileModal {
+    position: fixed !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    top: 70px !important;
+    width: calc(100% - 40px) !important;
+    max-width: calc(100% - 40px) !important;
+    z-index: 12000 !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Tiles and grids become 1-column or 2-column where appropriate */
+  .db-tiles { grid-template-columns: repeat(2, 1fr) !important; }
+  .db-grid { grid-template-columns: 1fr !important; }
+  .db-tiles .db-tile { padding: 12px !important; }
+
+  /* Make inline nav labels visible on small screens to aid discoverability */
+  .nav-link span.d-none.d-lg-inline { display: inline !important; }
+
+  /* Ensure card images are not excessively tall */
+  .card .card-img-top { max-height: 320px !important; }
+}
+
+/* Make form controls and select elements adapt nicely to stacking */
+.form-select, .form-control {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure small inline forms/wrappers wrap on mobile */
+.d-flex, .row, .filter-row, .filter-section .filter-row {
+  flex-wrap: wrap;
+}
+
+/* Buttons in small toolbars shrink and wrap */
+.form-inline .btn, .btn-sm {
+  white-space: nowrap;
+}
+
+/* Quantity stepper: ensure it doesn't overflow on tiny screens */
+.qty-stepper { max-width: 160px; }
+
+/* Cart item images should remain fluid and not overflow cells */
+.cart-item-row img { max-width: 80px; height: auto; }
+
+/* Modal overlays: ensure they occupy full screen on small viewports */
+.db-modal-bg.open, .modal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 10px !important;
+}
+
+/* Toast/alert placement always accessible on small screens */
+.toast-feedback {
+  right: 12px !important;
+  left: 12px !important;
+  bottom: 12px !important;
+  width: auto !important;
+  max-width: calc(100% - 24px) !important;
+}
+
+/* Notification dropdown - maintain comfortable width on very narrow screens */
+@media (max-width: 640px) {
+  .dropdown-menu[aria-labelledby="notifMenu"] {
+    min-width: 90vw !important;
+    max-width: 90vw !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    top: 70px !important;
+  }
+}
+
+/* Small accessibility refinements: focus visible even on touch devices */
+:focus {
+  outline: 3px solid rgba(123,63,228,0.12);
+  outline-offset: 2px;
+}
+
+/* Ensure images inside table cells don't cause height issues */
+.table img { height: auto; max-height: 120px; }
+
+/* Make sure fixed-width elements gracefully shrink */
+.badge, .db-pill-count, .db-tile-count {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Final safety: ensure footer and header remain readable on smallest devices */
+.footer, .db-header {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+/* End of responsive additions */
+/* -------------------------------------------------------------------- */

@@ -1,0 +1,140 @@
+/* Compact minimalist admin analytics styles */
+
+/* Overall container */
+.analytics-container {
+  max-width: 1200px;
+  margin: 18px auto;
+  padding: 10px 18px;
+  box-sizing: border-box;
+  color: #2b2b2b;
+  background: #fff;
+}
+
+/* Header/title */
+.analytics-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.analytics-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 26px;
+  font-weight: 400;
+  margin: 0;
+  color: #222;
+}
+
+/* Tiny toolbar / controls */
+.analytics-toolbar {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.analytics-toolbar .btn {
+  font-size: 13px;
+  padding:6px 10px;
+  border-radius:8px;
+  border:1px solid #e0e0e0;
+  background: #fff;
+  cursor:pointer;
+}
+
+/* KPI row - small cards with compact metrics and sparkline */
+.kpi-row {
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+  margin-bottom:12px;
+}
+.kpi-card {
+  flex:1;
+  min-width:140px;
+  background:#fff;
+  border:1px solid #f0f0f0;
+  border-radius:10px;
+  padding:10px 12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:none;
+}
+.kpi-card .kpi-label {
+  font-size:12px;
+  color:#666;
+  margin-bottom:6px;
+}
+.kpi-card .kpi-value {
+  font-weight:700;
+  font-size:18px;
+  color:#222;
+}
+.kpi-spark {
+  height:34px;
+  margin-top:8px;
+}
+
+/* Main grid: two-column, left bigger for time series */
+.analytics-grid {
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap: 14px;
+}
+
+/* Chart card minimalist */
+.chart-card {
+  background:#fff;
+  border-radius:10px;
+  border:1px solid #f0f0f0;
+  padding:12px;
+  box-shadow:none;
+  min-height:160px; /* keep compact */
+  display:flex;
+  flex-direction:column;
+}
+.chart-card .card-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
+  color:#333;
+  margin-bottom:8px;
+}
+.chart-controls {
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+/* Make chart canvases shorter */
+.chart-card canvas {
+  width:100% !important;
+  height:120px !important; /* reduced height to make charts smaller */
+}
+
+/* Collapse toggle: hide chart body */
+.chart-collapsed .card-body {
+  display:none;
+  height:0;
+  padding:0;
+  margin:0;
+}
+
+/* Compact legend style (if using HTML legend) */
+.compact-legend {
+  font-size:12px;
+  gap:6px;
+  display:flex;
+  align-items:center;
+  color:#666;
+}
+
+/* Responsive for narrow screens */
+@media (max-width: 920px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+  .kpi-row { flex-wrap:wrap; }
+  .chart-card canvas { height:140px !important; } /* slightly taller on small screens */
+}
